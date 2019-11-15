@@ -4,4 +4,4 @@ WORKDIR /usr/share/nginx/html
 
 COPY web/index.html .
 
-EXPOSE 80
+EXPOSE 8080
