@@ -6,9 +6,11 @@ RUN apt-get update && apt-get install -y npm \
     libssl-dev curl
 # RUN apt-get install -y build-essential libssl-dev
 RUN curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh -o install_nvm.sh
-RUN bash install_nvm.sh 
-RUN bash -c "source ~/.profile" 
-CMD ["nvm", "install v8.11.1"]
+# RUN bash install_nvm.sh 
+# RUN bash -c "source ~/.profile" 
+# # CMD ["nvm", "install v8.11.1"]
+# ENTRYPOINT [ "nvm" ]
+# CMD ["install v8.11.1"]
 
 #COPY source dest
 
