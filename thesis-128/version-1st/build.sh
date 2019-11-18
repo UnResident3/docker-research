@@ -1,0 +1,1 @@
+docker build -t thesis-128:1st-version .
