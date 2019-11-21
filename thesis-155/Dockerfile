@@ -6,9 +6,8 @@ ENV POSTGRES_PASSWORD P@$$0rd
 
 VOLUME vol-thesis-155:/var/lib/postgresql/data
 # VOLUME /vol-thesis-155:/var/lib/postgresql/data   #สามารถใช้แบบนี้ได้เช่นกัน
-
+ENV WORK_DIR=/home
 
 EXPOSE 5432
-WORKDIR /home 
-
-
+WORKDIR ${WORK_DIR}
+#ENV PATH=/home
