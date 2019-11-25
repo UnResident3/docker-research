@@ -1,6 +1,7 @@
 # สร้าง Network 
 docker network create -d bridge --subnet=172.20.0.0/16 --gateway=172.20.0.1 thesis-156
 
+docker build --file THESIS-156/Dockerfile -t thesis-155:latest .
 
 docker run -d --network=thesis-156 --ip=172.20.0.5 --name=db-server thesis-155:latest
 
