@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+
+  db_server:
+    build: 
+      context: ..
+      dockerfile: thesis-155/Dockerfile
+    image: thesis-155:latest
+    container_name: db_server
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      vpcbr:
+        ipv4_address: 172.20.0.5
+
+  db_admin:    
+    image: adminer:4.7.5-standalone
+    container_name: db_admin
+    ports:
+      - "10081:8080"
+    networks:
+      vpcbr:
+        ipv4_address: 172.20.0.10
+
+volumes:
+  db_data:
+
+networks: 
+  vpcbr:    
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
