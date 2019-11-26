@@ -8,9 +8,8 @@ service:
       - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
-    networks: 
-      - thesis-129
-      app_net:
+    networks:
+      vpcbr:
         ipv4_address: 172.20.0.5
       
   adminer:
@@ -18,12 +17,18 @@ service:
     container_name: db_admin
     ports:
       - "10081:8080"
-    networks: 
-      - thesis-129
-      app_net:
+    networks:
+      vpcbr:
         ipv4_address: 172.20.0.10
 
 volumes:
   db_data:
 
+networks: 
+  vpcbr:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+          gateway: 172.20.0.1 
 
