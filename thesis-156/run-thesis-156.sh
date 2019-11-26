@@ -1,5 +1,20 @@
 #!/bin/bash
+SOURCE_DIR="$(pwd)"
 
+if [[ ! ${SOURCE_DIR} =~ thesis-156 ]] 
+then
+    printf "\n🗂 Change directory to ./thesis-156/"
+    cd thesis-156
+fi
+
+printf "\n\n⏹ Stop any existing db-admin and db-server before rerun"
+    docker stop db-admin
+    docker stop db-server
+
+printf "\n\n🔌 Remove docker network before create"
+    docker network rm thesis-156
+
+printf "\n\n❌ EXISTING COMPONENT CLEARED\n\n"
 docker network create -d bridge \
 --subnet=172.20.0.0/16 \
 --gateway=172.20.0.1 \
