@@ -1,0 +1,19 @@
+{
+  "name": "thesis-184",
+  "version": "1.0.0",
+  "description": "Research for NestJS and Prometheus APM",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UnResident3/docker-research.git"
+  },
+  "author": "Tanoo Kacha, Panya Batphantana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UnResident3/docker-research/issues"
+  },
+  "homepage": "https://github.com/UnResident3/docker-research#readme"
+}

@@ -1,0 +1,18 @@
+version: "3"
+services:
+  nestjs-api:
+    build:
+      context: ./dockerfiles
+      dockerfile: development/Dockerfile
+    image: thesis-184:development
+    volumes:
+      - .:/home/node/app
+    ports:
+      - 30080:80
+    networks: 
+      - thesis-184
+    
+networks: 
+  thesis-184:
+    driver: bridge
+
