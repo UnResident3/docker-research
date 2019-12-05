@@ -6,7 +6,7 @@ services:
       dockerfile: development/Dockerfile
     image: thesis-184:development
     volumes:
-      - .:/home/node/app
+      - ./:/home/node/app
     ports:
       - 30080:80
     networks: 
