@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  nifi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: research/nifi:1.0.0
+    ports:
+      - 9090:9090
+      - 9091:9091
+    container_name: nifi
+    environment:
+      - NIFI_WEB_HTTP_PORT=9090
+      - NIFI_JVM_HEAP_INIT=256m
+      - NIFI_JVM_HEAP_MAX=512m
+      
+    volumes:
+      - nifi_log:/opt/nifi/nifi-current/logs
+
+  # monitoring:
+  #   image: google/cadvisor:latest
+  #   ports:
+  #     - 20080:8080
+  #   volumes:
+  #     - /:/rootfs:ro
+  #     - /var/run:/var/run:ro
+  #     - /sys:/sys:ro
+  #     - ~/Library/Containers/com.docker.docker/Data:/var/lib/docker:ro
+  #     - /dev/disk/:/dev/disk:ro
+  #   container_name: c_advisor
+
+volumes:
+  nifi_log: {}
+  ro: {}
