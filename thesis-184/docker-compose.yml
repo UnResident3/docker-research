@@ -1,6 +1,6 @@
 version: "3"
 services:
-  nestjs-api:
+  api:
     build:
       context: ./dockerfiles
       dockerfile: nodeapp/Dockerfile
@@ -10,10 +10,23 @@ services:
     ports:
       - 30080:80
       - 3000:3000
-    networks: 
-      - thesis-184
-    
-networks: 
-  thesis-184:
-    driver: bridge
+  
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./config/prometheus-data:/prometheus-data
+    # networks: 
+    #   - thesis-184
+    command: "--config.file=/prometheus-data/prometheus.yml"
+
+# networks: 
+#   thesis-184:
+#     driver: bridge
+
+networks:
+  default:
+    external:       
+      name: thesis-184
 
