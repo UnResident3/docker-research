@@ -3,12 +3,13 @@ services:
   nestjs-api:
     build:
       context: ./dockerfiles
-      dockerfile: development/Dockerfile
-    image: thesis-184:development
+      dockerfile: nodeapp/Dockerfile
+    image: thesis-184:node-app
     volumes:
-      - ./:/home/node/app
+      - .:/usr/src/app
     ports:
       - 30080:80
+      - 3000:3000
     networks: 
       - thesis-184
     
