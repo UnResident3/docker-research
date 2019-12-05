@@ -17,13 +17,16 @@ services:
       - 9090:9090
     volumes:
       - ./config/prometheus-data:/prometheus-data
-    # networks: 
-    #   - thesis-184
     command: "--config.file=/prometheus-data/prometheus.yml"
 
-# networks: 
-#   thesis-184:
-#     driver: bridge
+  nifi:
+    image: apache/nifi:1.10.0
+    ports:
+      - 10090:10090
+    environment:
+      - NIFI_WEB_HTTP_PORT=10090
+      - NIFI_JVM_HEAP_INIT=256m
+      - NIFI_JVM_HEAP_MAX=3g
 
 networks:
   default:
