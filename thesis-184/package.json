@@ -1,0 +1,19 @@
+{
+    "name": "thesis-184",
+    "version": "1.0.0",
+    "description": "Research for NodeJS simple app and Prometheus APM",
+    "main": "index.js",
+    "scripts": {
+        "start": "node ./app/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/UnResident3/docker-research.git"
+    },
+    "author": "Panya Batphantana <fanneioz@yahoo.co.th>",
+    "license": "ISC",
+    "dependencies": {
+        "express": "4.17.1",
+        "prom-client": "11.5.3"
+    }
+}
