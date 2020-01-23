@@ -1,0 +1,63 @@
+version: "3.2"
+
+services:
+  traefik:
+    container_name: "traefik"
+    image: library/traefik
+    command: -c /dev/null --api --docker --docker.domain=traefik.u2pia.com --logLevel=DEBUG
+    ports:
+      - 80:80
+      - 8080:8080
+      
+    
+    #volumes:
+     # - /home/latex/Documents/repos/docker-research/traefik/traefik:/etc/traefik/
+     # - /var/run/docker.sock:/var/run/docker.sock
+    # networks:
+    #   - frontend
+    #   - traefik
+    deploy:
+      placement:
+        constraints:
+          - 'node.role == manager'
+
+  mongodb:
+    image: mongo:latest
+    container_name: "mongodb"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null  
+    volumes:
+      -  /home/latex/Documents/repos/docker-research/data/db:/data/db
+    ports:
+      - 27017:27017
+
+  nfluxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    # networks:
+    #   - frontend
+    volumes:
+      - ./app/influxdb/influxdb:/var/lib/influxdb
+    ports:
+      - 8086:8086
+  grafana:
+    image: grafana/grafana
+    container_name: "grafana"
+    ports:
+      - 9001:3000
+    # volumes:
+    #   - /home/latex/Documents/repos/docker-research/grafana:/var/lib/grafana
+    # networks:
+    #   - frontend
+    labels:
+      - "traefik.port=3000"
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
+      - "traefik.backend=grafana"
+      - "traefik.frontend.rule=Host:grafana.u2pia.com"
+  # networks:
+  #   frontend:
+  #     driver: overlay
+  #   traefik:
+  #     driver: bridge
